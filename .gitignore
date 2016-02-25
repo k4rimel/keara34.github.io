@@ -48,15 +48,6 @@ Temporary Items
 
 #
 node_modules
-dist
 .tmp
 .sass-cache
-bower_components/angular
-bower_components/angular-resource
-bower_components/angular-route
-bower_components/angular-sanitize
-bower_components/bootstrap-material-design
-bower_components/bootstrap
-bower_components/bootstrap-sass
-bower_components/jquery
-bower_components/weather-icons
+bower_components

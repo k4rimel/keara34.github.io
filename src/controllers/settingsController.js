@@ -49,12 +49,12 @@
 				}
 			});
 		}
-		$scope.removeCity = function(code) {
-			for (var i = 0; i < Storage.cities.length; i++) {
-				if(Storage.cities[i].id === code) {
-					Storage.remove(code);
-				}
-			}
+		$scope.removeCity = function(city) {
+			// for (var i = 0; i < Storage.cities.length; i++) {
+			// 	if(Storage.cities[i].id === city.id) {
+					Storage.remove(city);
+			// 	}
+			// }
 			update();
 			// Storage.remove(code);
 		};
