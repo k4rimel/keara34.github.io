@@ -1,0 +1,10 @@
+body {
+	/*background-color: #1d1d1d;*/
+}
+#app-title {
+	color:#2a2a2a;
+}
+.weather-icon {
+    font-size: 2em;
+    float: left;
+}
