@@ -1,15 +1,13 @@
 <div class="list-group">
-	<div class="widget col-md-4 col-lg-3" ng-repeat="city in cities">
+	<div class="widget col-md-4 col-lg-3" ng-repeat="city in cities track by $index">
 		<div class="list-group-item" >
 		<div class="row-action-primary">
 			<i class="{{city.icon}} weather-icon"></i>
-		  	<!-- <i class="material-icons">folder</i> -->
 		</div>
 		<div class="row-content">
-		  <div class="least-content"></div>
-		  <h4 class="list-group-item-heading">{{city.name}}</h4>
-
-		  <p class="list-group-item-text">{{city.temp + " °C"}}</p>
+		  <div class="least-content city-temp">{{city.temp + " °C"}}</div>
+		  <h4 class="list-group-item-heading city-name">{{city.name}}</h4>
+		  <p class="list-group-item-text weather-desc">{{city.desc}}</p>
 		</div>
 		</div>
 	  <div class="list-group-separator"></div>

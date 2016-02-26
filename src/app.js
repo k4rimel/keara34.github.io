@@ -3,5 +3,4 @@
 
 	angular.module("ngForecast", ['ngRoute', 'ngSanitize']);
 	
-	
 })();

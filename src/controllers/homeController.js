@@ -6,7 +6,6 @@
 		.controller('HomeController', HomeController);
 
 	function HomeController($scope, $route, Storage, Widget) {
-		// var home = $scope;
 		$scope.cities = [];
 		$scope.err = false;
 		$scope.message = {};
@@ -26,8 +25,6 @@
 		$scope.init = function() {
 			$scope.getData();
 		};
-		
-	  	
 	  	$scope.init();
 	}
 })();

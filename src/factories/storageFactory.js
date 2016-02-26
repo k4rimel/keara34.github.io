@@ -10,12 +10,10 @@
 
 		factory.cities = [];
 		angular.element($window).on('storage', function(event) {
-			console.log('storing');
 		    if (event.key === 'cities') {
 		      	$rootScope.$apply();
 		    }
 	  	});
-
     	function setData(val) {
       		$window.localStorage && $window.localStorage.setItem('cities', val);
   			return this;
@@ -51,28 +49,12 @@
 			getFromLS();
 			return factory.cities;
 		};
-		factory.updateData = function() {
-			// todo : rewrite for the refresh button
-			// var lsTab = JSON.parse(getData());
-			// var factoryTab = factory.cities;
-			// for (var i = 0; i < lsTab.length; i++) {
-			// 	for (var i = 0; i < factoryTab.length; i++) {
-			// 		if(factoryTab[i] !== factoryTab){
-
-			// 		}
-			// 	}
-			// }
-		}
 		factory.save = function(city) {
 			if(!hasDuplicate(city)) {
 				factory.cities.push(city);
+				console.log(city);
 				saveToLS();
 			} 
-			// else {
-			// 	// TODO UPDATE
-			// 	factory.updateData();
-			// }
-			
 		};
 		factory.remove = function(city) {
 			var factoryCities = factory.cities;
