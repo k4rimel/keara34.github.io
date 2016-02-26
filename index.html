@@ -2,7 +2,15 @@
 <html lang="en" ng-app="ngForecast">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>NG Forecast</title>
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/weather-icons/css/weather-icons.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<!-- end css -->
 	<!-- libs -->
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -35,39 +43,39 @@
 	<!-- filters -->
 	<script type="text/javascript" src="src/filters/dateFilter.js"></script>
 	<!-- end filers -->
-	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/weather-icons/css/weather-icons.min.css">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
 </head>
 <body>
-	<script type="text/javascript">
-		$.material.init();
-	</script>
+	<div class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="home">ngForecast</a>
+	    </div>
+	    <div class="navbar-collapse collapse navbar-responsive-collapse" id="navbar-responsive-collapse">
+	      	<ul class="nav navbar-nav main-menu">
+  			  <li ng-class="{active: $route.current.activetab == '/'}"><a href="home" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+  			  <li ng-class="{active: $route.current.activetab == '/settings'}"><a href="settings" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+				</ul>
+	    </div>
+	  </div>
+	</div>
 	<div class="container">
-		<div class="row">
-			<div class="navbar navbar-default">
-			  <div class="container-fluid">
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <a class="navbar-brand" href="home">ngForecast</a>
-			    </div>
-			    <div class="navbar-collapse collapse navbar-responsive-collapse" id="navbar-responsive-collapse">
-			      	<ul class="nav navbar-nav main-menu">
-	      			  <li ng-class="{active: $route.current.activetab == '/'}"><a href="home" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-	      			  <li ng-class="{active: $route.current.activetab == '/settings'}"><a href="settings" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-      				</ul>
-			    </div>
-			  </div>
-			</div>
-		</div>
 		<div class="row" ng-view>
 		</div>
 	</div>
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+	  		$.material.init();
+		});
+	</script>
 </body>
 </html>
