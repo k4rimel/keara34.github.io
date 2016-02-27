@@ -9,19 +9,19 @@
 		$scope.cities = Storage.cities;
 		$scope.err = false;
 		$scope.label = "Enter a city name or code";
+		$scope.loading = false;
 
 		function update() {
 			$scope.cities = Storage.cities;
 		}
 		$scope.getData = function() {
-			console.log(Storage.cities);
 			if(Storage.get().length !== 0) {
 		  		update();
 			}
 		};
 		$scope.add = function(value) {
+			$scope.loading = true;
 			Widget.getCity(value).then(function(res) {
-				if(res.cod === 200) {
 					$scope.err = false;
 					var city = {};
 					var prefix = 'wi wi-';
@@ -39,11 +39,12 @@
 					city.desc = wDesc;
 					Storage.save(city);
 					update();
-				} else {
-					$scope.err = true;
-					$scope.message = "City not found";
-				}
-			});
+			}, function (res) {
+				$scope.err = true;
+				$scope.message = "City not found";
+			}).finally(function() {
+			    $scope.loading = false;
+		  	});
 		}
 		$scope.remove = function(city) {
 			Storage.remove(city);

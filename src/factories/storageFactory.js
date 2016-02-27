@@ -52,10 +52,43 @@
 		factory.save = function(city) {
 			if(!hasDuplicate(city)) {
 				factory.cities.push(city);
-				console.log(city);
 				saveToLS();
 			} 
 		};
+		factory.refresh = function(cb) {
+			var idsTab = [];
+			for (var i = 0; i < factory.cities.length; i++) {
+				idsTab.push(factory.cities[i].id);
+			}
+			Widget.getAllCities(idsTab.join(",")).then(function(res) {
+				var updatedCities = [];
+				var error = false;
+				for (var i = 0; i < res.cnt; i++) {
+					var city = {};
+					var prefix = 'wi wi-';
+					var wCode = res.list[i].weather[0].id;
+				  	var icon = ICONS[wCode].icon;
+				  	if (!(wCode > 699 && wCode < 800) && !(wCode > 899 && wCode < 1000)) {
+			  	 		icon = 'day-' + icon;
+				  	}
+				  	icon = prefix + icon;
+					city.temp = Math.floor(res.list[i].main.temp);
+					city.icon = icon;
+					city.desc = res.list[i].weather[0].description;
+					city.name = res.list[i].name;
+					city.id = res.list[i].id;
+					updatedCities.push(city);
+				}
+				factory.cities = updatedCities;
+				cb(false);
+				saveToLS();
+			}, function (res) {
+				error = true;
+				cb(error, res.statusText);
+			}).finally(function(res) {
+			    cb(error);
+		  	});
+		}
 		factory.remove = function(city) {
 			var factoryCities = factory.cities;
 			for (var i = 0; i < factoryCities.length; i++) {

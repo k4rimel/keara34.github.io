@@ -5,7 +5,7 @@
 		.module('ngForecast')
 		.factory('Widget', WidgetFactory);
 
-	function WidgetFactory($http, $q) {
+	function WidgetFactory($http, $q, $timeout) {
 		var factory = {};
 
 		factory.data = {};
@@ -18,19 +18,18 @@
       		});
       		return deferred.promise;
     	};
-
-		factory.getCity = function(value) {
-			//todo : test if http 200 code and errors
-
-			var req;
-			// api calls
-			if(typeof value === 'string' && isNaN(value)) {
-				req = makeRequest('http://api.openweathermap.org/data/2.5/weather?q='+value+'&units=metric&APPID='+factory.key);
+		factory.getAllCities = function(params) {
+			return makeRequest('http://api.openweathermap.org/data/2.5/group?id='+params+'&units=metric&APPID='+factory.key);
+		}
+		factory.getCity = function(params) {
+			var promise;
+			if(typeof params === 'string' && isNaN(params)) {
+				promise = makeRequest('http://api.openweathermap.org/data/2.5/weather?q='+params+'&units=metric&APPID='+factory.key);
 			}
 			else {
-				req = makeRequest('http://api.openweathermap.org/data/2.5/weather?id='+value+'&units=metric&APPID='+factory.key);
+				promise = makeRequest('http://api.openweathermap.org/data/2.5/weather?id='+params+'&units=metric&APPID='+factory.key);
 			}
-			return req;
+			return promise;
 		};
 
 		return factory;
